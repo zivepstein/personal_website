@@ -3044,10 +3044,31 @@ input, select, textarea {
 
 	@media screen and (max-width: 980px) {
 
+		p{
+			font-size: 200%;
+			line-height: 3rem;
+		}
+
 		/* Basic */
 
 			h1 br, h2 br, h3 br, h4 br, h5 br, h6 br {
 				display: none;
+			}
+
+			ul{
+				font-size:150%;
+				line-height: 3rem;
+			}
+
+			
+
+			.work-item p {
+    		font-size: 120%;
+			line-height: 3rem;
+			}
+
+			.work-item p {
+    		font-size: 150%;
 			}
 
 		/* List */
