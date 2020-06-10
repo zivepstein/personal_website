@@ -172,6 +172,22 @@ var BugDispatch = {
 
     },
 
+    clickSpawn: function(x, y) {
+     
+    
+          var options = JSON.parse(JSON.stringify(this.options));
+        var b = SpawnBug();
+
+            options.wingsOpen = (this.options.canFly) ? ((Math.random() > 0.5) ? true : false) : true,
+                options.walkSpeed = this.random(this.options.minSpeed, this.options.maxSpeed),
+            b.initialize(this.transform, options, true, true);
+            this.bugs.push(b);
+            b.drawBug(y,x)
+            b.go()
+
+
+    },
+
     stop: function() {
         for (var i = 0; i < this.bugs.length; i++) {
             if(this.spawnDelay[i]) clearTimeout(this.spawnDelay[i]);
@@ -336,8 +352,9 @@ var BugController = function() {
 BugController.prototype = BugDispatch;
 
 var SpiderController = function() {
+   
     var spiderOptions = {
-        imageSprite: 'spider-sprite.png',
+        imageSprite: 'heart-sprite.png',
         bugWidth: 69,
         bugHeight: 90,
         num_frames: 7,
@@ -345,12 +362,12 @@ var SpiderController = function() {
         canDie: false,
         numDeathTypes: 2,
         zoom: 6,
-        minDelay: 200,
-        maxDelay: 3000,
+        minDelay: 100,
+        maxDelay: 1000,
         minSpeed: 6,
         maxSpeed: 13,
-        minBugs: 3,
-        maxBugs: 10
+        minBugs: 5,
+        maxBugs: 8
     };
     this.options = mergeOptions(this.options, spiderOptions);
     this.initialize.apply(this, arguments);
@@ -373,7 +390,7 @@ var Bug = {
 
     },
 
-    initialize: function(transform, options) {
+    initialize: function(transform, options, make_heart = null, set_z= null) {
 
         this.options = mergeOptions(this.options, options);
 
@@ -415,9 +432,10 @@ var Bug = {
         this.rad2deg_k = 180 / Math.PI;
         this.deg2rad_k = Math.PI / 180;
 
-        this.makeBug();
+        this.makeBug(make_heart, set_z);
 
         this.angle_rad = this.deg2rad(this.angle_deg);
+
 
         this.angle_deg = this.random(0, 360, true);
 
@@ -540,18 +558,38 @@ var Bug = {
 
     },
 
-    makeBug: function() {
+    makeBug: function(make_heart, set_z) {
         if (!this.bug && this.active) {
             var row = (this.wingsOpen) ? '0' : '-' + this.options.bugHeight + 'px',
                 bug = document.createElement('div');
             bug.className = 'bug';
-            bug.style.background = 'transparent url(' + this.options.imageSprite + ') no-repeat 0 ' + row;
+            var s = Math.random()
+            console.log(s);
+            if (s < 0.25 || make_heart){
+                var sprite_url = 'heart-sprite.png'
+            } else if (s< 0.5){
+               var sprite_url = 'grimace-sprite.png' 
+            } else if (s< 0.75){
+               var sprite_url = 'fire-sprite.png' 
+            } else if (s< 0.90){
+               var sprite_url = 'ufo-sprite.png' 
+            } else if (s< 0.98){
+               var sprite_url = 'sparkle-sprite.png' 
+            } else {
+                var sprite_url = 'poop-sprite.png' 
+            }
+            bug.style.background = 'transparent url(' + sprite_url + ') no-repeat 0 ' + row;
             bug.style.width = this.options.bugWidth + 'px';
             bug.style.height = this.options.bugHeight + 'px';
             bug.style.position = 'fixed';
             bug.style.top = 0;
             bug.style.left = 0;
-            bug.style.zIndex = '9999999';
+
+            if (Math.random() > 0.8 || set_z){
+                bug.style.zIndex = '999'
+            } else{
+               bug.style.zIndex = '-1' 
+            }
 
             this.bug = bug;
             this.setPos();
@@ -575,20 +613,20 @@ var Bug = {
 
         // transform:
         var trans = "translate(" + parseInt(x) + "px," + parseInt(y) + "px)";
-        if (deg) {
-            //console.log("translate("+(x)+"px, "+(y)+"px) rotate("+deg+"deg)");
-            trans += " rotate(" + deg + "deg)";
-        }
+        // if (deg) {
+        //     //console.log("translate("+(x)+"px, "+(y)+"px) rotate("+deg+"deg)");
+        //     trans += " rotate(" + deg + "deg)";
+        // }
         trans += " scale(" + this.zoom + ")";
 
         this.transform(trans);
 
     },
 
-    drawBug: function(top, left) {
-
+    drawBug: function(top, left, make_heart = null, set_z = null) {
+        
         if (!this.bug) {
-            this.makeBug();
+            this.makeBug(make_heart= make_heart, set_z = set_z);
         }
         if(!this.bug) return;
 
