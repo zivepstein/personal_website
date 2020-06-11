@@ -1280,6 +1280,8 @@ input, select, textarea {
 
 		@media screen and (max-width: 736px) {
 
+
+
 			.row {
 				display: flex;
 				flex-wrap: wrap;
@@ -3091,9 +3093,15 @@ input, select, textarea {
 	
 
 		p{
-			font-size: 150%;
-			line-height: 2rem;
+			font-size: 250%;
+			line-height: 3.3rem;
 		}
+
+		.controlText{
+			font-size: 2.8vw !important;
+		}
+
+
 
 		/* Basic */
 
