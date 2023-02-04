@@ -3221,7 +3221,6 @@ font-size: 1.5em;
 
 .biobox{
 	overflow: scroll;
-	height: 48vh;
 	border-radius: 0.5rem;
 	border: 0.5px solid black;
 	background-color:white;
