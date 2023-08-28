@@ -1039,7 +1039,11 @@ input, select, textarea {
 
 
 		@media screen and (max-width: 980px) {
+			#bio_extra{
+				display: none;
+			}
 
+		
 			.biobox{
 				overflow: visible !important;
 				height: 100% !important;
@@ -3177,10 +3181,6 @@ z-index: 10;
 
 }
 
-#about{
-	width: 15vw;
-	display: none;
-}
 
 #newsBox{
 	position: fixed;
