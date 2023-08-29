@@ -59,7 +59,7 @@
 								</div>
 								<div class = "navWrapper">
 									<div class = "navButton" id = "about">
-										<h2 class = "navButtonInner"><img class = "" id = "1" height = "42vh" src="images/icons/real/paper_empty.png" alt="" style="vertical-align:middle"/> About</h2>
+										<h2 class = "navButtonInner"><img class = "" id = "1" height = "42vh" src="images/icons/real/qm.png" alt="" style="vertical-align:middle"/> About</h2>
 									</div>
 									<div class = "navButton" id = "paps">
 										<h2 class = "navButtonInner"><img class = "" id = "1" height = "42vh" src="images/icons/real/paper_empty.png" alt="" style="vertical-align:middle"/> Papers</h2>
@@ -106,7 +106,8 @@
 								<p style = "margin: 1vw"><a href = "images/zepstein_mondo.png">Headshot</a>. Other photos:</p>
 								<img src="images/seaf.jpeg" alt="" style = "width: 48%;"/>
 								<img src="images/ziv2.jpg" alt="" style = "width: 48%;"/>
-								<iframe src="https://drive.google.com/file/d/1JdhOdV5kYO-FJCm69TGVxiD1duDy6Lt7/preview" width="200" height="200" allow="autoplay"></iframe>
+								<iframe src="https://drive.google.com/file/d/1JdhOdV5kYO-FJCm69TGVxiD1duDy6Lt7/preview" width="48%" height="200" allow="autoplay"></iframe>
+								<iframe src="https://drive.google.com/file/d/1u0zY0kCjeNtb6JggAtZ_gU9PQ5AjT1LW/preview" width="48%" height="200" allow="autoplay"></iframe>
 							</span>
 							</div>
 							<div class="col-6 col-12-small biobox" style = "height: 95vh; margin-right: 1vw;margin-bottom: 1vw; display: none;" id = "papsbox">
@@ -670,7 +671,7 @@
 
   			function write2db(i, n){
   				var x = {}
-  				for (index = 1; index < 22; index++) { 
+  				for (index = 1; index < 27; index++) { 
     				x['heart'.concat(index)] = 0
 				}  
 
@@ -694,6 +695,7 @@
 
 			var activeBox = "#aboutframe"
 			var activeButton = "#about"
+			$( activeButton).css("background-color", "#F9F8DB");
 			
 			$( "#tav" ).click(function() {
 				console.log("gi;");
