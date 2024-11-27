@@ -111,8 +111,22 @@
 							</span>
 							</div>
 							<div class="col-6 col-12-small biobox" style = "height: 95vh; margin-right: 1vw;margin-bottom: 1vw; display: none;" id = "papsbox">
-								<h2 style = "text-align: center;">Selected Papers</h2> 
+								<h2 style = "text-align: center;">Selected Papers</h2>
+								<p style = "margin: 1rem;">Here is a small selection of papers. For a complete list, see <a href = "https://scholar.google.com/citations?user=yG7l19UAAAAJ&hl=en">Google Scholar.</p>
+								
 								<ul>
+									<li class = "card" id = "aor">
+										<div class = "innerCard">
+										<a href = "https://hdsr.mitpress.mit.edu/pub/x5yq8vmk/release/1" class = "selpub">Ugander, J & <b>Epstein ZG,</b> The art of randomness: sampling and chance in the age of algorithmic reproduction. Harvard Data Science Review. 2024.</a>
+										<img src="images/aor.png" alt="" style = "width: 100%;"/>
+
+									</div>
+									<div class = "controls">
+																<span class = "item"><a target="_blank" href = "https://hdsr.mitpress.mit.edu/pub/x5yq8vmk/release/1" style = "border-bottom: none"><img class = "cButton" width = "35vw" src="images/icons/real/paper_empty.png" alt="" /><span class = "controlText">&nbsp HDSR </span></a></span>
+																<span class = "item" style = "flex-grow: 2"><a target="_blank" href = "https://mailchi.mp/stanford/digdig-11142024" style = "border-bottom: none"><img class = "cButton" width = "35vw" src="images/icons/real/paper_empty.png" alt="" /><span class = "controlText">&nbsp DigDig </span></a></span>
+																<span class = "item"><img class = "cButton" id = "26" width = "35vw" src="images/heart_empty.png" alt="" style="vertical-align:middle"/>&nbsp<span class = "controlText" id = "heart_count26"></span></span>
+														</div>
+									</li>
 									<li class = "card" id = "asogai">
 										<div class = "innerCard">
 										<a href = "https://www.science.org/doi/10.1126/science.adh4451" class = "selpub"><b>Epstein ZG,</b> Hertzmann A, et al. Art and the science of generative AI. Science. 2023.</a>
@@ -120,7 +134,7 @@
 
 									</div>
 									<div class = "controls">
-																<span class = "item"><a target="_blank" href = "https://www.nature.com/articles/s41586-021-03344-2" style = "border-bottom: none"><img class = "cButton" width = "35vw" src="images/icons/real/paper_empty.png" alt="" /><span class = "controlText">&nbsp Science </span></a></span>
+																<span class = "item"><a target="_blank" href = "https://www.science.org/doi/10.1126/science.adh4451" style = "border-bottom: none"><img class = "cButton" width = "35vw" src="images/icons/real/paper_empty.png" alt="" /><span class = "controlText">&nbsp Science </span></a></span>
 																<span class = "item" style = "flex-grow: 2"><a target="_blank" href = "https://theconversation.com/generative-ai-is-a-minefield-for-copyright-law-207473" style = "border-bottom: none"><img class = "cButton" width = "35vw" src="images/icons/real/paper_empty.png" alt="" /><span class = "controlText">&nbsp The Conversation </span></a></span>
 																<span class = "item"><a target="_blank" href = "https://humancreativity.mit.edu/" style = "border-bottom: none"><img class = "cButton" width = "35vw" src="images/icons/real/site_empty.png" alt="" /><span class = "controlText">&nbsp Site </span></a></span>
 																<span class = "item"><img class = "cButton" id = "25" width = "35vw" src="images/heart_empty.png" alt="" style="vertical-align:middle"/>&nbsp<span class = "controlText" id = "heart_count25"></span></span>
@@ -663,11 +677,12 @@
 				var data = data.values[0]
 				for (index = 0; index < data.length; index++) { 
     				var heart_id = parseInt(index+1)
+					console.log(heart_id);
     				$("#heart_count".concat(heart_id)).html(data[index]);
 				} 
 			}
 
-			fetch('https://sheets.googleapis.com/v4/spreadsheets/1h39UBvZ5QZ7UHnhsP1LpfG_xCrxattxL5hWVnFfwWVU/values/Sheet1!B3:Z3?key=AIzaSyDkdgg_5hLcPCNc0d4AVG8KHbTYX0_BEgs', {
+			fetch('https://sheets.googleapis.com/v4/spreadsheets/1h39UBvZ5QZ7UHnhsP1LpfG_xCrxattxL5hWVnFfwWVU/values/Sheet1!B3:AA3?key=AIzaSyDkdgg_5hLcPCNc0d4AVG8KHbTYX0_BEgs', {
       			method: "GET",
       			headers: {
         		"Content-Type": "application/json",
@@ -679,7 +694,7 @@
 
   			function write2db(i, n){
   				var x = {}
-  				for (index = 1; index < 27; index++) { 
+  				for (index = 1; index < 28; index++) { 
     				x['heart'.concat(index)] = 0
 				}  
 
